@@ -1,0 +1,186 @@
+<!DOCTYPE html> 
+<html lang="ru"> 
+<head>
+
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <meta charset="UTF-8"> 
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"> 
+    <title>GG!</title> 
+    <link rel="stylesheet" href="../ui/static/css/home.css"> 
+</head>
+<body>
+   
+    <div class="app-wrapper">
+        <!-- меню слева -->
+        <aside class="sidebar" id = "sidebar">
+            <div class="sidebar-header">
+                <div class="logo">
+                    <h2>GoGraph!</h2> 
+                    <button class="toggle-btn" id="toggle-btn">☰</button> <!--бургэн-->
+                </div>
+            </div>
+            
+            <nav class="nav-menu">
+                <a href="#" class="nav-link active" data-page="monitoring">📊<span>Dashboard</span></a>
+                <a href="#" class="nav-link" data-page="history">📜 <span>History</span></a>
+                <a href="#" class="nav-link" data-page="about">🧾<span>About us</span></a>    
+            </nav>
+
+            <div class="sidebar-footer">
+                <div class="signature">Thx 4 use GG!</div>
+            </div>
+        </aside>
+
+        <!-- конт-я часть -->
+        <div class="pages-container">
+            <div id="page-monitoring" class="page active">
+                <main class="main-content">
+                    <header class="content-header">
+                        <h1>Мониторинг пленки</h1>
+                    </header>
+
+                    <section class="workspace">
+                        <!-- графики и таблицы -->
+                        <div class="card chart-section">
+                            <div class="card-header">
+                                <h3>📈 Live Визуализация</h3>
+                            </div>
+                            <!-- <img src="/pic/img008.gif" width="800" height="400" alt="График"> -->
+                            <canvas id="liveChart" width="400" height="250" ></canvas>
+                            </div>
+                        <!-- панель управления -->
+                        <div class = "card control panel-section">
+                            <div class = "card-header">
+                                <h3>🛠 Панель управления </h3>
+                            </div>
+                            <div class = "control-buttons">
+
+                                <form> 
+                                    <button type="button" class = "btn-start">🟢 Запустить замер</button>
+                                    <button type="button" class = "btn-clear">🧹 Очистить график</button>
+                                    <input type="file" name="files" id="fileElem" multiple accept=".txt , .json, .csv" style="display:none"> <!--поменять кнопки пока на пустые, когда буду сдавать как первую лабораторную (name="files") --> 
+                                    <label for="fileElem" title="предоставьте данные нам! (не обещаем что они не уйдут конкурентам)" class="button">📁 Загрузить данные</label>
+                                    <!-- <button type="submit" class="submit-btn">Сохранить на сервер</button> -->
+                                    <!-- <button id="openBtn" type="button" class="main-button">🗄️ Подключиться к БД</button> -->
+                                    <button class="btn" id="SyncLink">📱 Открыть на телефоне</button>
+                                </form>
+
+                                <dialog id="dbDialog">
+                                    <div class="dialog-header">
+                                        <span>Настройки подключения</span>
+                                        <button id="closeBtn" class="close-x">&times;</button>
+                                    </div>
+                                    
+                                    <form id="dbForm">
+                                        <div class="input-group">
+                                        <label>Хост / IP</label>
+                                        <input type="text" name="host" placeholder="localhost" required>
+                                        </div>
+                                        
+                                        <div class="row">
+                                        <div class="input-group flex-2">
+                                            <label>Имя базы</label>
+                                            <input type="text" name="dbname" placeholder="postgres" required>
+                                        </div>
+                                        <div class="input-group flex-1">
+                                            <label>Порт</label>
+                                            <input type="number" name="port" placeholder="5432">
+                                        </div>
+                                        </div>
+
+                                        <div class="input-group">
+                                        <label>Пользователь</label>
+                                        <input type="text" name="user" required>
+                                        </div>
+
+                                        <div class="input-group">
+                                        <label>Пароль</label>
+                                        <input type="password" name="password">
+                                        </div>
+
+                                        <div class="actions">
+                                        <button type="submit" class="submit-btn">Проверить соединение</button>
+                                        </div>
+                                    </form>
+                                    
+                                </dialog>
+
+                            
+                            </div>
+                        </div>
+
+                        
+
+                        <div class = "card result-section">
+                            <h3>📄 Лог: {{.Filename}} </h3>
+                            <div class="terminal-box">
+                                <pre>
+                                <pre>{{.Result}}</pre>
+                            </div>   
+                        </div>
+                        
+                    </section>
+                </main>
+            </div>
+            <div id="page-about" class="page">
+                        <!-- конт-я часть -->
+                <main class="main-content">
+                    <header class="content-header">
+                        <h1>🧾 About us</h1>
+                    </header>
+
+                    <section class="workspace">
+                        <div class="card">
+                            <p>GoGraph! — это веб-сервис для получения, обработки и визуализации данных из различных источников. Разработан как MVP-проект по дисциплине «Интернет-технологии».
+                                Наш сервис позволяет:
+                                Бесшовно объединять данные: Подключайте файлы или внешние потоки данных в пару кликов.
+                                Видеть результат мгновенно: Живые графики позволяют следить за состоянием полимеров в реальном времени.</p>
+                            <p>Разработал студент третьего курса Соколов Артём 435 группы. Права не защищены, do what u want</p>
+                        </div>
+                    </section>
+                </main>
+            </div>
+            <div id="page-history" class="page">
+                <main class="main-content">
+                    <header class="content-header">
+                        <h1>📜 История исследований</h1>
+                        <br>
+                        <button class="export-btn" onclick="exportReport()">
+                            📥 Экспорт отчёта
+                        </button>
+                    </header>
+        
+                    <section class="workspace">
+                        <!-- л карточка: Список файлов -->
+                        <div class="card result-section">
+                            <div class="card-header">
+                                <h3>Архив проведенных замеров</h3>
+                            </div>
+                            <!-- имитация данных  -->
+                            <div class="terminal-box">
+                                <div id="historyContainer"></div>
+                            </div>
+                        </div>
+        
+                        <!-- п к: управление -->
+                        <div class="card panel-section">
+                            <div class="card-header">
+                                <h3>Управление архивом</h3>
+                            </div>
+                            <div class="control-buttons">
+                                <input type="date" id="historyDateFilter">  
+                                <button class="danger-btn" style="background: #742a2a;" onclick="clearHistory()">
+                                    🗑 Очистить историю
+                                </button>
+                            </div>
+                        </div>
+                    </section>
+                </main>
+            </div>
+        </div>
+
+    </div>
+
+    <script src="../ui/static/js/aps_4spa.js" defer></script>
+</body>
+</html>

@@ -1,0 +1,50 @@
+services:
+
+  db:
+    image: postgres:16-alpine
+    container_name: gograph_db
+    restart: unless-stopped
+    # Вот этот блок заставит Docker прочитать твой .env файл на Arch Linux:
+    env_file:
+      - .env
+    environment:
+      POSTGRES_USER: ${DB_USER}
+      POSTGRES_PASSWORD: ${DB_PASSWORD}
+      POSTGRES_DB: ${DB_NAME}
+    ports:
+      - "5433:5432"
+    volumes:
+      - db_data:/var/lib/postgresql/data
+      - ./db/init.sql:/docker-entrypoint-initdb.d/init.sql:ro
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U ${DB_USER} -d ${DB_NAME}"]
+      interval: 5s
+      timeout: 5s
+      retries: 5
+
+  app:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: gograph_app
+    restart: unless-stopped
+    depends_on:
+      db:
+        condition: service_healthy
+    # Прокидываем .env файл внутрь нашего Go-сервера:
+    env_file:
+      - .env
+    environment:
+      DB_HOST: db
+      DB_PORT: 5432
+      DB_USER: ${DB_USER}
+      DB_PASSWORD: ${DB_PASSWORD}
+      DB_NAME: ${DB_NAME}
+      DB_SSLMODE: disable
+    ports:
+      - "8181:8181"
+    volumes:
+      - ./uploads:/app/uploads
+
+volumes:
+  db_data:

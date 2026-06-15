@@ -1,0 +1,512 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Inter', sans-serif;
+    background-color: rgb(26, 28, 35);
+}
+
+.button{
+    color: white;
+    padding-left: 10px; 
+}
+
+.app-wrapper {
+    display: flex;
+    height: 100vh;
+}
+
+.content-header{
+    color:aliceblue
+}
+
+/* шапка внутри сайдбара */
+.sidebar-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between; 
+    margin-bottom: 30px;
+    padding: 5px;
+}
+
+/* стили сайдбара */
+.sidebar {
+    width: 260px;
+    background-color: rgb(26, 28, 35); 
+    color: white;
+    display: flex;
+    flex-direction: column; 
+    padding: 20px;
+    transition: 0.3s;
+    
+}
+
+/* для js бургэн и collapse */
+.toggle-btn {
+    background: none;
+    border: none;
+    color: #00d2ff; 
+    font-size: 24px;
+    cursor: pointer;
+    transition: 0.3s;
+    outline: none;
+}
+
+
+
+.sidebar.collapsed {
+    width: 80px;
+    transition: 0.3s; 
+}
+
+.sidebar.collapsed .logo h2, 
+.sidebar.collapsed .nav-link span {
+    display: none;
+}
+/*центрируем */
+.sidebar.collapsed .nav-link {
+    text-align: center;
+    padding-left: 0;
+}
+
+.logo {
+    transition: 0.1s;
+    color: #00d2ff;
+    font-weight: bold;
+}
+
+.nav-menu {
+    flex-grow: 1; /* толкаем футер вниз */
+}
+
+.nav-link {
+    display: block;
+    color: #a0aec0;
+    text-decoration: none;
+    padding: 12px 0;
+    transition: 0.3s;
+}
+
+/* при наведении или активности кнопки двигается и меняется цвет */
+.nav-link:hover, .nav-link.active {
+    color: white;
+    padding-left: 10px; 
+}
+
+/* хорошая подбись снизу подпись внизу */
+.sidebar-footer {
+    border-top: 1px solid #2d3748;
+    padding-top: 20px;
+    font-size: 0.8rem;
+    color: #718096;
+}
+
+.signature {
+    margin-top: 10px;
+    font-weight: bold;
+    letter-spacing: 2px;
+    color: #4a5568;
+}
+
+
+/* работа с картинкой, с её растяжением, подстраиваем высоты и тд и тп */
+.chart-section img {
+    width: 100%;          
+    height: auto;         
+    display: block;       
+    margin-top: 10px;     
+}
+
+
+/* основной контент */
+.main-content {
+    flex-grow: 1; 
+    overflow-y: auto; 
+    padding: 30px;
+}
+
+.card {
+    background: rgb(55, 59, 74);
+    border-radius: 10px;
+    padding: 20px;
+    box-shadow: 0 4px 6px rgba(0,0,0,0.05);
+    color: white;
+}
+
+
+.pages-container {
+    width: 100%;
+    /* max-width: 1600px;  */
+    margin: 0 auto;    
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    transition: max-width 0.3s ease; 
+}
+
+
+/* сетка для рабочей области */
+.workspace {
+    display: grid;
+    grid-template-columns: 5fr 3fr; 
+    gap: 20px;
+    margin-top: 20px;
+    align-items: start;
+}
+
+/* шапка карточки (линия и отступы) */
+.card-header {
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    margin-bottom: 15px;
+    padding-bottom: 10px;
+}
+
+.card-header h3 {
+    color: #00d2ff;
+}
+
+/* растяг результата на обе колонки */
+.result-section {
+    grid-column: 1 / 3;
+}
+
+/* стили для кнопок в панели управления */
+.control-buttons form {
+    display: grid;
+    gap: 10px;
+}
+
+
+
+.control-buttons button, .btn-start, .button {
+    background: #4a5568;
+    color: white;
+    border: none;
+    padding: 12px;
+    border-radius: 6px;
+    cursor: pointer;
+    text-align: center;
+    text-decoration: none;
+    font-size: 0.9rem;
+    transition: background 0.3s;
+}
+
+.control-buttons button:hover, .btn-start:hover , .button:hover {
+    background: #00d2ff;
+}
+
+/* стили для текстового вывода (терминала) */
+.terminal-box {
+    background: #1a1c23;
+    padding: 15px;
+    border-radius: 5px;
+    overflow: auto;
+    max-height: 300px;
+}
+
+.terminal-box pre {
+    color: #00ff00; 
+    font-family: 'Courier New', Courier, monospace;
+    font-size: 0.85rem;
+}
+
+
+/* история */
+/* кнопки действий в таблице */
+.table-actions {
+    display: flex;
+    justify-content: flex-end;
+    gap: 8px;
+}
+
+.btn-icon {
+    background: #2d3748;
+    border: none;
+    padding: 5px 8px;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: 0.2s;
+}
+
+.btn-icon:hover { background: #4a5568; }
+.btn-icon.btn-del:hover { background: #e53e3e; }
+
+/* стили для инпутов в фильтре */
+.input-dark {
+    width: 100%;
+    background: #1a1c23;
+    border: 1px solid #4a5568;
+    color: white;
+    padding: 10px;
+    border-radius: 6px;
+    margin-bottom: 10px;
+}
+
+.header-actions {
+    display: flex;
+    gap: 15px;
+}
+
+
+
+/* под разные устрйоства */
+@media (max-width: 768px) {
+    
+    
+    .main-content {
+        padding: 10px; 
+        width: 100%;
+        max-width: 100%;
+        height: auto;
+        
+    }
+
+    * {
+    min-width: 0; 
+    }
+
+    button, .button {
+        white-space: normal; 
+        word-wrap: break-word; 
+        height: auto; 
+    }
+
+    .card {
+        padding: 10px;
+        
+    }
+
+    .app-wrapper {
+        flex-direction: column;
+    }
+
+    .sidebar {
+        width: 100%;
+        height: auto;
+        padding: 10px 20px;
+
+    }
+
+    .sidebar-header{
+        margin-bottom: 0px;
+    }
+
+
+    /* убирается список ссылка и футер */
+    .nav-menu, .sidebar-footer {
+        display: none; 
+    }
+
+    /* уменшение лого */
+    .sidebar .logo h2 {
+        font-size: 1.2rem;
+    }
+
+
+    .sidebar.mobile-open .nav-menu{
+        display: flex;
+        flex-direction: column;
+        margin-top: 20px;
+    }
+
+    .sidebar.mobile-open .sidebar-footer {
+        display:none;
+    }
+
+    .workspace {
+        display: grid ;
+        grid-template-columns: 1fr; 
+        
+    }
+    
+    .result-section {
+    grid-column: 1;
+    }
+
+    .control-buttons form {
+    display: flex;
+    flex-direction: row;
+    gap: 10px;
+}
+}
+
+
+
+/* телевизор (от 1920px) */
+@media (min-width: 1921px) {
+    html {
+        font-size: clamp(18px, 1vw, 30px); 
+
+    }
+
+    
+}
+
+/* скрываем элементы страницы и показываем только нужные это для js */
+.page {
+        display: none;
+        animation: fadeIn 0.3s ease;
+    }
+
+    .page.active {
+            display: block;
+        }
+
+    @keyframes fadeIn {
+        from { opacity: 0; transform: translateY(10px); }
+        to { opacity: 1; transform: translateY(0); }
+    }
+
+/* Тоже для js, только диалоговое окно для инпута параметров БД */
+
+
+
+:root {
+    --bg-dark: #111217;
+    --bg-input: #0b0c0e;
+    --border: #2c3235;
+    --blue: #3773e0;
+    --text: #d8d9da;
+  }
+  
+  body { background: #181b1f; font-family: sans-serif; }
+  
+  /* кнопка вызова */
+  .main-button {
+    background: var(--blue);
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 2px;
+    cursor: pointer;
+  }
+  
+  /* cтили диалога */
+  dialog {
+    background: var(--bg-dark);
+    color: var(--text);
+    border: 1px solid var(--border);
+    border-radius: 2px;
+    padding: 0;
+    width: 400px;
+    box-shadow: 0 8px 16px rgba(0,0,0,0.4);
+    margin: auto; 
+    
+  }
+  
+  dialog::backdrop {
+    background: rgba(0, 0, 0, 0.8);
+  }
+  
+  .dialog-header {
+    padding: 16px;
+    background: #22252b;
+    display: flex;
+    justify-content: space-between;
+    border-bottom: 1px solid var(--border);
+  }
+  
+  form { padding: 20px; }
+  
+  .input-group { margin-bottom: 15px; }
+  .input-group label { display: block; font-size: 12px; margin-bottom: 5px; color: #5794f2; }
+  .input-group input {
+    width: 100%;
+    padding: 8px;
+    background: var(--bg-input);
+    border: 1px solid var(--border);
+    color: white;
+    box-sizing: border-box;
+  }
+  
+  .row { display: flex; gap: 10px; }
+  .flex-2 { flex: 2; }
+  .flex-1 { flex: 1; }
+  
+  .submit-btn {
+    width: 100%;
+    background: var(--blue);
+    border: none;
+    color: white;
+    padding: 10px;
+    cursor: pointer;
+    font-weight: bold;
+  }
+  
+  .close-x {
+    background: none;
+    border: none;
+    color: var(--text);
+    font-size: 20px;
+    cursor: pointer;
+  }
+
+
+.history-card {
+    background: #22252b;
+    border: 1px solid #e0e0e0;
+    border-radius: 12px;
+    padding: 16px;
+    margin-bottom: 16px;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+    transition: box-shadow 0.2s;
+}
+
+.history-card:hover {
+    box-shadow: 0 4px 16px rgba(0,0,0,0.1);
+}
+
+.history-card h3 {
+    margin-top: 0;
+    color: #ffffff;
+}
+
+.history-card p {
+    margin: 6px 0;
+    color: #ffffff;
+    font-size: 14px;
+}
+
+.empty-message, .error-message {
+    padding: 20px;
+    text-align: center;
+    color: #666;
+}
+
+/* стиль для кнопочки экспорта */
+.export-btn {
+
+    background: #4a5568;
+
+    color: white;
+
+    border: none;
+
+    padding: 12px;
+
+    border-radius: 6px;
+
+    cursor: pointer;
+
+    text-align: center;
+
+    text-decoration: none;
+
+    font-size: 0.9rem;
+
+    transition:
+        background 0.3s,
+        transform 0.2s;
+
+    font-weight: 600;
+}
+
+.export-btn:hover {
+
+    background: #00d2ff;
+
+    transform: translateY(-2px);
+}
