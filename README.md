@@ -3,7 +3,7 @@
 
 Веб-сервис для загрузки, обработки и построения графиков по результатам испытаний материалов. .
 
-![demo](https://github.com/user-attachments/assets/9d24e1bc-e301-4ac3-a52a-dd7ea1f83593)
+[на гифку.webm](https://github.com/user-attachments/assets/c5cd2f96-fe1d-4f00-9d6b-c3975ad01c5e)
 
 ## Что умеет проект
 
