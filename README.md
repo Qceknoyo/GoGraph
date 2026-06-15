@@ -1,10 +1,9 @@
+
 # GoGraph! 📊
 
 Веб-сервис для загрузки, обработки и построения графиков по результатам испытаний материалов. .
 
-<p align="center">
-  <img src="assets/demo.gif" alt="Demo" width="700">
-</p>
+![demo](https://github.com/user-attachments/assets/9d24e1bc-e301-4ac3-a52a-dd7ea1f83593)
 
 ## Что умеет проект
 
